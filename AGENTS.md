@@ -182,14 +182,17 @@ review applied in a second commit. What is true only here:
 
 - **Scopes** for the subject: the package and app names under `packages/` and
   `apps/` - `core`, `registry`, `payments`, `graph`, `cap-rugscore`, `mcp`,
-  `provider`, `watchdog`, `dashboard` - plus `demo`, `pitch`, `testing` and `docs`
-  for the cross-cutting write-ups and the demo itself, which is not an app in this
-  repo. A comma-separated list when a change spans several (`fix(mcp,demo): ...`).
+  `provider`, `watchdog`, `dashboard` - plus `demo`, `pitch`, `testing`, `docs`
+  and `repo` for the cross-cutting write-ups and the demo itself, which is not an
+  app in this repo. A comma-separated list when a change spans several
+  (`fix(mcp,demo): ...`).
 - **Required check**: `check`, the CI workflow's only job (`Typecheck` then `Test`
   inside it), from the branch ruleset's `required_status_checks`.
 - **Merge**: `gh pr merge <n> --squash --delete-branch` is the only method the
   ruleset allows (`allowed_merge_methods: ["squash"]`), and `allow_auto_merge` is
   off here, so watch `gh pr checks <n> --watch` yourself rather than arming
   `--auto`. `delete_branch_on_merge` is on, so nothing needs deleting by hand;
-  local `main` still needs `git checkout main && git pull --ff-only` afterward,
-  since it diverges on every squash.
+  local `main` still needs `git checkout main && git pull --ff-only` afterward
+  (never a hard reset: the shared checkout can carry another session's
+  uncommitted work, and a plain fast-forward is enough since nothing else moves
+  local `main` between merges).
