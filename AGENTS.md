@@ -167,3 +167,32 @@ needs a live run before you believe it.
 Conventional Commits. Keep commits **incremental and real** as you build; a single
 giant "hackathon submission" commit at the end is a red flag to sponsor judges.
 Never commit secrets or `SPEC.md`.
+
+## Pull requests
+
+One shape for every repo of mine: `skill://opening-a-pull-request`, with what is true
+only here. This is a solo ETHGlobal Lisbon 2026 hackathon build and nothing here is
+tracked in Linear: the 48 issues this repo has (`area:*`/`type:*`/`priority:*` labels)
+belong to the hackathon build itself and are all closed, and no new one has opened
+since submission. There is no open card to place a PR against, so a PR stands on its
+own and the template's `Linear: LOR-` line stays unfilled unless that changes.
+Conventional Commits in the first person, the body's four sections from
+`.github/PULL_REQUEST_TEMPLATE.md` (Screenshots is never deleted), an independent
+review applied in a second commit. What is true only here:
+
+- **Scopes** for the subject: the package and app names under `packages/` and
+  `apps/` - `core`, `registry`, `payments`, `graph`, `cap-rugscore`, `mcp`,
+  `provider`, `watchdog`, `dashboard` - plus `demo`, `pitch`, `testing`, `docs`
+  and `repo` for the cross-cutting write-ups and the demo itself, which is not an
+  app in this repo. A comma-separated list when a change spans several
+  (`fix(mcp,demo): ...`).
+- **Required check**: `check`, the CI workflow's only job (`Typecheck` then `Test`
+  inside it), from the branch ruleset's `required_status_checks`.
+- **Merge**: `gh pr merge <n> --squash --delete-branch` is the only method the
+  ruleset allows (`allowed_merge_methods: ["squash"]`), and `allow_auto_merge` is
+  off here, so watch `gh pr checks <n> --watch` yourself rather than arming
+  `--auto`. `delete_branch_on_merge` is on, so nothing needs deleting by hand;
+  local `main` still needs `git checkout main && git pull --ff-only` afterward
+  (never a hard reset: the shared checkout can carry another session's
+  uncommitted work, and a plain fast-forward is enough since nothing else moves
+  local `main` between merges).
