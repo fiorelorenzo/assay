@@ -7,6 +7,14 @@
       "env": {
         "ASSAY_LOOP_EVENTS_SINK": "/home/dev/Progetti/assay/.assay/loop-events.ndjson"
       }
+    },
+    "linear-personal": {
+      "type": "stdio",
+      "command": "${HOME}/.local/bin/mcp-http-bridge",
+      "args": [
+        "${HOME}/.config/agents-mcp/clients/personal/client.json",
+        "linear-personal"
+      ]
     }
   }
 }
